@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<style>
+		[v-cloak]{
+			display: none;
+		}
+	</style>
+	<script src="js/vue.min.js"></script>
+	<body>
+		<!--将来new的vue实例，会控制这个元素中的所有内容-->
+		<div id="app">
+			<h4>{{msg}}</h4>
+			<input type="button" value="浪起来" @click="lang"/>
+			<input type="button" value="低调" @click="stop"/> 
+		</div>
+	</body>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el:'#app', //表示 ，当前我们new的这vue实例。要控制页面上的哪个区域
+			data:{ //data属性中存放的是el中用到的数据
+				msg:'猥琐发育，别浪~~~！',
+				intervalId:null //在data上定义定时器id
+			},
+			methods:{
+				lang() {
+					if(this.intervalId!= null){
+						return;
+					}
+					this.intervalId =  setInterval(() => {
+							//获取到头的第一个字符
+					    var start =	this.msg.substring(0,1);
+					    //获取到后面的所有字符
+					    var end = this.msg.substring(1);
+					    //重新拼接得到新的字符串，并赋值给this.msg
+					    this.msg= end + start;
+					    console.log(this.msg);
+					},400);					
+				},
+				stop(){
+					clearInterval(this.intervalId);
+					this.intervalId = null;
+				}
+			}
+		});
+	</script>
+</html>
