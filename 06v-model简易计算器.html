@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<style>
+		.inner{
+			height: 150px;
+			background-color: darkcyan;
+		}
+		.outer{
+			padding: 30px;
+			background: red;
+		}
+	</style>
+	<script src="js/vue.min.js"></script>
+	<body>
+		<!--将来new的vue实例，会控制这个元素中的所有内容-->
+		<div id="app">
+			<input type="text" v-model="n1" />
+			<select v-model="opt">
+				<option value="+">+</option>
+				<option value="-">-</option>
+				<option value="*">*</option>
+				<option value="/">/</option>				
+			</select>
+			<input type="text" v-model="n2"/>
+			<input type="button" value="=" @click="calc" />
+			<input type="text" v-model="result" />
+		</div>
+	</body>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el:'#app', //表示 ，当前我们new的这vue实例。要控制页面上的哪个区域
+			data:{ //data属性中存放的是el中用到的数据
+				n1:0,
+				n2:0,
+				result:0,
+				opt:"-"
+			},	
+			methods:{
+				calc(){
+				/*	
+				 * //方法一
+				 switch(this.opt){
+						case '+':
+						    this.result = parseInt(this.n1) + parseInt(this.n2)
+							break;
+						case '-':
+						    this.result = parseInt(this.n1) - parseInt(this.n2)
+							break;
+						case '*':
+						    this.result = parseInt(this.n1) * parseInt(this.n2)
+							break;
+						case '/':
+						    this.result = parseInt(this.n1) / parseInt(this.n2)
+							break;	
+				 }*/
+					
+					/*投机取巧的方法，项目中少用*/
+					var codeStr = 'parseInt(this.n1)' +this.opt + 'parseInt(this.n2)';
+					this.result=eval(codeStr);
+					console.log(this.result);
+					
+				}
+				
+			}
+		});
+	</script>
+</html>

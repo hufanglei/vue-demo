@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<style>
+		.inner{
+			height: 150px;
+			background-color: darkcyan;
+		}
+		.outer{
+			padding: 30px;
+			background: red;
+		}
+	</style>
+	<script src="js/vue.min.js"></script>
+	<body>
+		<!--将来new的vue实例，会控制这个元素中的所有内容-->
+		<div id="app">
+				<h4>{{msg}}</h4>
+				<!--
+                	v-bind 只能实现数据的单向绑定，从M自动绑定到V，无法实现数据的双向绑定
+                -->
+				<input type="text"  v-bind:value="msg" style="width: 100%;"/>
+                <!--  使用v-model指令，可以实现表单元素和Model中数据的双向数据绑定-->
+				<!--
+                   input(radio,text,address,email) select checbox textarea
+                -->
+				<input type="text"  v-model="msg" style="width: 100%;"/>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el:'#app', //表示 ，当前我们new的这vue实例。要控制页面上的哪个区域
+			data:{ //data属性中存放的是el中用到的数据
+				msg:'大家都是好学生，爱敲代码，爱学习，爱思考，简直了！',
+			},	
+			methods:{
+				divHandler(){
+					console.log('这是触发了inner div的点击事件');
+				
+				}
+				
+			}
+		});
+	</script>
+</html>

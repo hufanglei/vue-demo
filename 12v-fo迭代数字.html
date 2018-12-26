@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<style>
+		
+	</style>
+	<script src="js/vue.min.js"></script>
+	<body>
+		<!--将来new的vue实例，会控制这个元素中的所有内容-->
+		<div id="app">
+			<!--in后面我们放普通数组，对象数组，对象，还可以放数字-->
+			<!--注意，如果使用v-for迭代数字的话，前面的count值从1开始-->
+			<p v-for="count in 10">这是第{{count}}次循环</p>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el:'#app', //表示 ，当前我们new的这vue实例。要控制页面上的哪个区域
+			data:{ //data属性中存放的是el中用到的数据
+				
+			},	
+			methods:{
+			
+				
+			}
+		});
+	</script>
+</html>

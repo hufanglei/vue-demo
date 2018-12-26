@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<style>
+		
+	</style>
+	<script src="js/vue.min.js"></script>
+	<body>
+		<!--将来new的vue实例，会控制这个元素中的所有内容-->
+		<div id="app">	
+			<div>
+				<label >Id:
+					<input type="text" v-model="id"/>
+				</label>
+				<label>Name:
+					<input type="text" v-model="name"/>
+				</label>
+				<label>
+					<input type="button" @click="add" value="添加"/>
+				</label>				
+			</div>
+			<!--
+				注意:v-for循环大的时候，key属性只能使用number获取string
+				注意:key在使用的时候，必须使用v-bind属性绑定的形式，指定key的值。
+				在组件中，使用v-for循环的时候，或者在一些特殊的情况中，如果v-for有问题，必须在使用v-for的同时，
+				指定唯一的字符串/数字。类型 :key值
+			-->
+			<p v-for="item in list" :key="item.id">
+				<input type="checkbox" />
+				{{item.id}}======{{item.name}}
+			</p>
+		</div>
+	</body>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el:'#app', //表示 ，当前我们new的这vue实例。要控制页面上的哪个区域
+			data:{ //data属性中存放的是el中用到的数据
+				id:"",
+				name:"",
+				list:[
+					{id:1,name:'李斯'},
+					{id:2,name:'嬴政'},
+					{id:3,name:'赵高'},
+					{id:4,name:'韩非子'},
+					{id:5,name:'荀子'}
+				]
+			},	
+			methods:{			
+				add(){
+					this.list.unshift({id:this.id,name:this.name});
+				}
+			}
+		});
+	</script>
+</html>
