@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+	</head>
+	<style>
+		
+	</style>
+	<script src="js/vue.min.js"></script>
+	<body>
+		<!--将来new的vue实例，会控制这个元素中的所有内容-->
+		<div id="app">	 
+		    <!--1.mvc和xvvm的区别-->
+		    <!--2.学习了vue中最基本的代码的结构-->
+		    <!--3.插值表达式 v-cloak v-text v-html v-bind（缩写是:） v-on(缩写是@) v-model 
+		    v-for v-if v-show-->
+		    
+		    <!--4.事件修饰符: .stop .prevent .capture .self .once-->
+             <!--5. el指定要控制的区域， data是个对象，指定了控制的区域内要用到的数据，methos虽然带个s后缀，
+                         但是个对象，这里定义了一些好用的方法-->
+                         
+            <!--6.在vm实例中，如果要访问data上的数据，或者要访问methos的方法，必须带this   -->  
+            
+           <!-- 7.在v-for要会使用key属性（只接受string/number）-->
+           
+           <!--8.v-model只能应用月表单元素-->
+          <!-- 9. 在vue中绑定样式两种方式 v-bind：class v-bind:style-->
+		    
+		    
+		</div>
+	</body>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el:'#app', //表示 ，当前我们new的这vue实例。要控制页面上的哪个区域
+			data:{ //data属性中存放的是el中用到的数据
+				flag:true
+			},	
+			methods:{			
+				toggle(){
+					this.flag = !this.flag;
+				}
+			}
+		});
+	</script>
+</html>
