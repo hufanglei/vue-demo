@@ -51,6 +51,7 @@
     //如果我们通过全局配置了请求的数据接口 根域名，则在每次单独发起http请求的时候，请求的url路径，
     //应该以相对路径开头 ，前面不能带/，否则不会启用根路径做拼接
     Vue.http.options.root = 'http://vue.studyit.io/';
+    Vue.http.options.emulateJSON = true;
     //创建vue实例，得到ViewModel
     var vm = new Vue({
         el:'#app',
@@ -81,7 +82,7 @@
             },
             //添加品牌列表到后台服务器
              add(){
-                this.$http.post('api/addproduct',{name:this.name},{emulateJSON: true})
+                this.$http.post('api/addproduct',{name:this.name})
                     .then(result=>{
                         if(result.body.status==0){
                             //成功了
@@ -94,7 +95,7 @@
             },
             //删除品牌
             del(id){
-                this.$http.get('api/delproduct').then(result=>{
+                this.$http.get('api/delproduct/'+id).then(result=>{
                     if(result.body.status==0){
                         this.getAllList();
                     }else{
