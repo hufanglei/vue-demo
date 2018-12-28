@@ -58,7 +58,7 @@
 		</div>
 
 		<div id="app2">
-			{{dt | dateFormat }}
+			<h3 v-color="'pink'" v-fontweight="900">{{dt | dateFormat }}</h3>
 		</div>
 	</body>
 	<script type="text/javascript">
@@ -92,21 +92,41 @@
 		// 但是在调用的时候，必须在指令名称前加 v- 前缀
 		//参数2 ： 是一个对象，这个对象身上，有一些指令相关的函数，这些函数可以在特定的阶段，执行相关的操作
 		Vue.directive('focus',{
-		    bind:function (el) {//每当指令绑定到元素上的时候，会立即执行这个bind，只执行一次
+		    bind:function (el,binding) {//每当指令绑定到元素上的时候，会立即执行这个bind，只执行一次
 				//注意:在每个函数，第一个参数，永远是el,表示 被绑定了指令的那个元素，这个el参数，是一个原生的js对象
 		        //在元素 刚绑定了指令的时候，还没有插入到Dom中去，这时候，调用focus方法没有作用
 				//因为 一个元素 只有插入Dom之后， 才能获取焦点
 				//el.focus();
+				el.style.color = binding.value;
             },
 			inserted:function (el) { //inserted 表示元素 插入到Dom中的时候，会执行inserted函数
                 el.focus();
             },
-			updated:function () {//当Vnode更新的时候，会执行updated，可能会触发多次
+			updated:function (el) {//当Vnode更新的时候，会执行updated，可能会触发多次
 
             }
 		});
+        Vue.directive('color',{
+            bind:function (el,binding) {//每当指令绑定到元素上的时候，会立即执行这个bind，只执行一次
+                //注意:在每个函数，第一个参数，永远是el,表示 被绑定了指令的那个元素，这个el参数，是一个原生的js对象
+                //在元素 刚绑定了指令的时候，还没有插入到Dom中去，这时候，调用focus方法没有作用
+                //因为 一个元素 只有插入Dom之后， 才能获取焦点
+                //el.focus();
+                el.style.color = 'red';
+                console.log(binding.name);//color
+                console.log(binding.value);//value
+                el.style.color = binding.value;
+            },
+            inserted:function (el) { //inserted 表示元素 插入到Dom中的时候，会执行inserted函数
+                // el.focus();
+            },
+            updated:function (el) {//当Vnode更新的时候，会执行updated，可能会触发多次
 
-		//创建vue实例，得到ViewModel
+            }
+        });
+
+
+        //创建vue实例，得到ViewModel
 		var vm = new Vue({
 			el:'#app',
 			data:{
@@ -208,6 +228,14 @@
                         return `${y}-${m}-${d} ${hh}-${mm}-${ss}~~~~~`;
                     }
                 }
+			},
+			directives:{//自定义私有指令
+			    'fontweight':{
+					bind:function (el,binding) {
+						el.style.fontWeight = binding.value;
+                    }
+                }
+
 			}
 		});
 		
