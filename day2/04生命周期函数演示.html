@@ -8,6 +8,7 @@
 	</head>
 	<body>
 		<div id="app">
+			<input type="button" value="修改msg" @click="msg='No'">
 			<h3 id="h3">{{msg}}</h3>
 		</div>
 	</body>
@@ -41,7 +42,20 @@
 			},
 			mounted(){//这是遇到的第4个生命周期函数，表示内存中的模板，已经真实的挂载到了页面中，用户应可以看到渲染好的页面了
                 console.log(document.getElementById('h3').innerText);
+			},
+			//接下来的是运行中的两个事件
+			beforeUpdate() { //这时候，表示 我们的界面还没有被更新【数据被更新了吗？ 数据肯定被更新了】
+				// console.log('界面上元素的内容: ' + document.getElementById('h3').innerText);
+				// console.log('data 中 msg 数据是:' + this.msg);
+				//得出结论: 当执行 beforeUpdate的时候，页面中的显示的数据，还是旧的，
+			},
+			updated(){
+                console.log('界面上元素的内容: ' + document.getElementById('h3').innerText);
+                console.log('data 中 msg 数据是:' + this.msg);
+				//updated 事件执行的时候，页面和data数据已经保持同步了，都是最新的数据
 			}
+
+
 		});
 	</script>
 </html>
