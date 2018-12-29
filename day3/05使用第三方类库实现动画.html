@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../bootstrap-3.3.7/css/bootstrap.css"/>
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/vue-resource.js"></script>
+    <!--自定义两组样式，来控制transation 内部的元素 实现动画-->
+
+
+    <style>
+        /*<!--v-leave-to 动画离开之后，离开的终止状态，此时，元素动画已经结束了-->*/
+        .v-enter,
+        .v-leave-to{
+            opacity: 0;
+            transform: translateX(150px);
+        }
+        /*v-enter-active 入场动画的时间段*/
+        /*v-leave-active 离场动画的时间段*/
+        .v-enter-active,
+        .v-leave-active{
+            transition: all 0.4s ease;
+        }
+
+
+        .my-enter,
+        .my-leave-to{
+            opacity: 0;
+            transform: translateX(70px);
+        }
+        /*my-enter-active 入场动画的时间段*/
+        /*my-leave-active 离场动画的时间段*/
+        .my-enter-active,
+        .my-leave-active{
+            transition: all 0.8s ease;
+        }
+
+
+    </style>
+</head>
+<body>
+<div id="app">
+    <input type="button" value="toggle" @click="flag=!flag">
+    <!--需求: 点击按钮，让h3显示，在点击， 让h3隐藏-->
+    <transition>
+        <h3 v-if="flag">这是一个H3</h3>
+    </transition>
+    <!--使用 transition 元素，吧需要被动画控制的元素，包裹起来-->
+    <!--transation元素，是Vue官方提供的-->
+
+    <hr>
+    <input type="button" value="toggle2" @click="flag2=!flag2">
+    <!--需求: 点击按钮，让h3显示，在点击， 让h3隐藏-->
+    <transition name="my">
+        <h6 v-if="flag2">这是一个H6</h6>
+    </transition>
+
+
+    <hr>
+   <!-- 使用  :duration="{ enter:200, leave: 400}">-->
+    <transition
+        enter-active-class="bounceIn"
+        leave-active-class="bounceOut"
+        :duration="{ enter:200, leave: 400}">
+        <h3 v-if="flag" class="animated">这是一个H3</h3>
+
+    </transition>
+
+
+</div>
+</body>
+<script type="text/javascript">
+    //创建vue实例，得到ViewModel
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            flag:false,
+            flag2:false
+        },
+        methods:{
+
+        },
+
+
+    });
+</script>
+</html>

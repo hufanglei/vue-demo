@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../bootstrap-3.3.7/css/bootstrap.css"/>
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/vue-resource.js"></script>
+    <!--自定义两组样式，来控制transation 内部的元素 实现动画-->
+
+
+    <style>
+        /*<!--v-leave-to 动画离开之后，离开的终止状态，此时，元素动画已经结束了-->*/
+        .v-enter,
+        .v-leave-to{
+            opacity: 0;
+            transform: translateX(150px);
+        }
+        /*v-enter-active 入场动画的时间段*/
+        /*v-leave-active 离场动画的时间段*/
+        .v-enter-active,
+        .v-leave-active{
+            transition: all 0.4s ease;
+        }
+
+
+        .my-enter,
+        .my-leave-to{
+            opacity: 0;
+            transform: translateX(70px);
+        }
+        /*my-enter-active 入场动画的时间段*/
+        /*my-leave-active 离场动画的时间段*/
+        .my-enter-active,
+        .my-leave-active{
+            transition: all 0.8s ease;
+        }
+
+        .ball{
+            height: 15px;
+            width: 15px;
+            border-radius: 50%;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <input type="button" value="快到碗里来" @click="flag=!flag">
+    <!--使用transation 元素吧小球包裹起来-->
+    <transition
+      @before-enter="beforeEnter"
+      @enter="enter"
+      @after-enter="afterEnter">
+        <div class="ball" v-show="flag"></div>
+    </transition>
+</div>
+
+</body>
+<script type="text/javascript">
+    Vue.directive('focus',function () {
+
+    });
+    //创建vue实例，得到ViewModel
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            flag:false
+        },
+        methods:{
+            //注意 动画钩子函数的第一个参数:el 表示要执行动画的那个Dom元素 是个原生的JS Dom对象
+            //大家可以认为，el是通过documnent.getElementById('')方式获取到的原生jsDom对象
+            beforeEnter(el){
+                //设置小球动画开始之前的 起始位置
+                el.style.transform = "translate(0,0)";
+            },
+            enter(el, done){
+                //这句话没有实际的作用，但是如果不写，出不来动画效果
+                //可以认为 el.offetWidth 会强制动画刷新
+                el.offsetWidth;
+                //enter 表示动画 开始之后的样式，这里可以设置 小球完成动画之后的 结束状态
+                el.style.transform = "translate(150px,450px)";
+                el.style.transition = "all 1s ease";
+                //这里的done，其实就是afterEnter这个函数：done是afterentere的引用
+                //done();
+
+            },
+            afterEnter(el){
+                //动画完成之后，会调用 afterEnter
+                console.log('OK');
+                this.flag = !this.flag;
+            }
+        },
+
+
+    });
+</script>
+</html>
