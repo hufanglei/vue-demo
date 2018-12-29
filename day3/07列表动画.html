@@ -56,17 +56,20 @@
         </label>
         <input type="button" value="添加" @click="add">
     </div>
-    <ul>
+    <!--<ul>-->
         <!--在实现列表过度的时候，如果选过过度的元素，是通过v-for 循环渲染出来的，不能使用
         transition包裹，需要使用transitionGroup-->
         <!--如果要为v-for循环创建的元素设置动画，必须为每一个元素 设置 :key属性-->
-        <transition-group>
+        <!--给transition-group 添加appear属性，实现页面刚出来时候入场时候 的效果-->
+       <!-- 通过transition-group元素，设置tab属性，指定transition-group 渲染为指定的元素，如果不指定
+        tag属性，默认，渲染为span标签-->
+        <transition-group appear tag="ul">
             <li v-for="(item,i) in list" :key="item.id" @click="del(i)">
                 {{item.id}} == {{item.name}}
             </li>
         </transition-group>
 
-    </ul>
+    <!--</ul>-->
 </div>
 
 </body>
