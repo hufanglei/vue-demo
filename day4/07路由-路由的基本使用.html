@@ -7,7 +7,19 @@
     <script src="../js/vue-router.js"></script>
     <!--<script src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>-->
     <!--<style/style>-->
+    <style>
+        .router-link-active,.myactive{
+            color: red;
+            font-weight: 800;
+            font-style: italic;
+            font-size: 80px;
+            text-decoration: underline;
+            background: green;
+
+        }
+    </style>
 </head>
+    
 <body>
 <div id="app">
     <!--<a href="#/login">登录</a>-->
@@ -39,7 +51,8 @@
             {path:'/', redirect:''},//这里的redirect和node中redirect完全是两码事
             {path:'/login', component:login},
             {path:'/register', component:register}
-        ]
+        ],
+        linkActiveClass:'myactive'
     })
 
     var vm = new  Vue({
