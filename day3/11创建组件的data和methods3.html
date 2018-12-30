@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../bootstrap-3.3.7/css/bootstrap.css"/>
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/vue-resource.js"></script>
+    <!--自定义两组样式，来控制transation 内部的元素 实现动画-->
+
+
+    <style>
+
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <mycom1></mycom1>
+    <!--hah-->
+    <!--<mycomp1></mycomp1>-->
+</div>
+
+
+</body>
+<script type="text/javascript">
+    //1.组件可以有自己的data数据
+    //2.组件的data和实例中的data有点不一样，实例中的data可以作为一个对象，但是组件的data必须是一个方法
+    //3.组件中的data除了必须为一个方法之外，这个方法内部，还必须返回一个对象才行
+    //4.组件中的data数据，使用方式，和实例总的data使用方式完全一样
+    Vue.component('mycom1',{
+        template:'<h1>这是全局组件 --- {{msg}}</h1>',
+        data:function () {
+            return {
+                msg:'这是组件中的data定义的数据'
+            };
+        }
+    })
+
+    //创建vue实例，得到ViewModel
+    var vm = new Vue({
+        el:'#app',
+        data:{
+        },
+        methods:{
+        },
+
+    });
+
+</script>
+</html>
