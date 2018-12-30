@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../bootstrap-3.3.7/css/bootstrap.css"/>
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/vue-resource.js"></script>
+    <!--自定义两组样式，来控制transation 内部的元素 实现动画-->
+
+
+
+</head>
+<body>
+
+<div id="app">
+    <!--组件定义第一种方式-->
+    <mycomp></mycomp>
+    <hr>
+    <!--组件定义第二种方式-->
+    <component :is="'mycomp'">
+
+    </component>
+    <hr>
+    <!--组件定义第三种方式-->
+    <mycom2></mycom2>
+</div>
+
+</body>
+<script type="text/javascript">
+    var login = {
+        template:'<h1>定义一个组件</h1>'
+    };
+    Vue.component('mycomp', login);
+
+    //创建vue实例，得到ViewModel
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            flag:false
+        },
+        methods:{
+
+        },
+        components:{
+            mycom2:login
+        }
+
+    });
+
+</script>
+</html>
