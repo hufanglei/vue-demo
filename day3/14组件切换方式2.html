@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../bootstrap-3.3.7/css/bootstrap.css"/>
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/vue-resource.js"></script>
+    <!--自定义两组样式，来控制transation 内部的元素 实现动画-->
+
+
+    <style>
+
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <a href="" @click.prevent="compName='login'">登录</a>
+    <a href="" @click.prevent="compName='register'">注册</a>
+    <!--<component :is="'login'"></component>-->
+    <!--<component :is="'register'"></component>-->
+
+    <!--Vue提供了component，来展示对应名称的组件-->
+    <!--component是一个占位符号，is属性，可以用来指定要展示的组件的名称-->
+    <component :is="compName"></component>
+
+    <!--总结:当前学了介个Vue提供的标签:
+    component,template,transition,transitionGroup-->
+</div>
+
+</body>
+<script type="text/javascript">
+    Vue.component('login',{
+        template:'<h1>这是个登录组件</h1>'
+    });
+    Vue.component('register',{
+        template:'<h1>这是个注册组件</h1>'
+    });
+
+    //创建vue实例，得到ViewModel
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            compName:'login'
+        },
+        methods:{
+
+        },
+
+    });
+
+</script>
+</html>
