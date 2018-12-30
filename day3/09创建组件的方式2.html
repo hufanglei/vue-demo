@@ -16,34 +16,18 @@
 <body>
 
 <div id="app">
-        <my-comp1></my-comp1>
+    <mycom2></mycom2>
     <!--hah-->
     <!--<mycomp1></mycomp1>-->
 </div>
 
 </body>
 <script type="text/javascript">
-    //使用Vue.extend 来创建全局的Vue组件
-    // var com1 = Vue.extend({
-    //     //
-    //     template:'<h3>这是使用Vue.extend创建的组件</h3>'
-    //
-    // });
-    //
-    // // Vue.component('mycomp1',com1);
-    // Vue.component('my-Comp1',com1);
+    //注意: 不论哪种方式出创建出来的组件，组件的template属性指向的模板内容，必须有且只有唯一的一个根元素
+    Vue.component('mycom2',{
+        template:'<div><h3>这是直接使用Vue.component 创建出来的组件2</h3><span>123</span></div>'
+    })
 
-    //Vue.component 第一个参数，组件的名称
-    //第二个参数，Vue.extend创建的组件，其中template就是组件将来要展示的内容
-    Vue.component('my-Comp1',Vue.extend({
-        //
-        template:'<h3>这是使用Vue.extend创建的组件</h3>'
-
-    }));
-
-    Vue.directive('focus',function () {
-
-    });
     //创建vue实例，得到ViewModel
     var vm = new Vue({
         el:'#app',
