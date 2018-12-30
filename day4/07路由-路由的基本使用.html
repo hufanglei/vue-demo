@@ -17,6 +17,15 @@
             background: green;
 
         }
+        .v-enter,
+        .v-leave-to{
+            opacity: 0;
+            transform: translateX(150px);
+        }
+        .v-enter-active,
+        .v-leave-active{
+            transition: all 0.5s ease;
+        }
     </style>
 </head>
     
@@ -28,7 +37,9 @@
     <!--router-link 默认渲染的是a标签-->
     <router-link to="/login" tag="span">登录</router-link>
     <router-link to="/register">注册</router-link>
-    <router-view></router-view>
+    <transition mode="out-in">
+        <router-view></router-view>
+    </transition>
 </div>
 
 <script>
