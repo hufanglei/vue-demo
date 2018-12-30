@@ -12,7 +12,7 @@
 <body>
 
 <div id="app">
-    <comp></comp>
+    <comp @func="loadComments"></comp>
     <ul class="list-group">
         <li class="list-group-item" v-for="item in list" :key="item.id">
             <span class="badge">评论人:{{item.user}}</span>
@@ -55,6 +55,7 @@
                 localStorage.setItem('cmts',JSON.stringify(list));
                 this.user = this.content = '';
                 console.log(list);
+                this.$emit('func');
             }
         }
     };
@@ -69,12 +70,19 @@
                 {id:Date.now(),user:'小马',content:'我姓马，风吹草地想牛羊的马'},
             ]
         },
+        created(){
+            this.loadComments();
+        },
         methods:{
-
+            loadComments(){
+                var list = JSON.parse(localStorage.getItem('cmts') || '[]');
+                this.list = list;
+            }
         },
         components:{
             comp:commentBox
         }
+
 
     });
 
