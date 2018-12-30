@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../bootstrap-3.3.7/css/bootstrap.css"/>
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/vue-resource.js"></script>
+    <!--自定义两组样式，来控制transation 内部的元素 实现动画-->
+
+
+    <style>
+
+    </style>
+</head>
+<body>
+
+<div id="app">
+        <my-comp1></my-comp1>
+    <!--hah-->
+    <!--<mycomp1></mycomp1>-->
+</div>
+
+</body>
+<script type="text/javascript">
+    //使用Vue.extend 来创建全局的Vue组件
+    var com1 = Vue.extend({
+        //
+        template:'<h3>这是使用Vue.extend创建的组件</h3>'
+
+    });
+
+    // Vue.component('mycomp1',com1);
+    Vue.component('my-Comp1',com1);
+
+    Vue.directive('focus',function () {
+
+    });
+    //创建vue实例，得到ViewModel
+    var vm = new Vue({
+        el:'#app',
+        data:{
+
+        },
+        methods:{
+
+
+        },
+
+
+    });
+</script>
+</html>
