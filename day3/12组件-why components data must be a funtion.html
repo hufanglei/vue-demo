@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../bootstrap-3.3.7/css/bootstrap.css"/>
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/vue-resource.js"></script>
+    <!--自定义两组样式，来控制transation 内部的元素 实现动画-->
+
+
+    <style>
+
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <counter></counter>
+    <counter></counter>
+    <counter></counter>
+    <!--hah-->
+    <!--<mycomp1></mycomp1>-->
+</div>
+<template id="temp1">
+    <div>
+        <input type="button" value="+1" @click="increment">
+        <h3>{{count}}</h3>
+    </div>
+</template>
+
+</body>
+<script type="text/javascript">
+    var dataObj = {count:0};
+    //这是一个计数器的组件，身上有个按钮，每当点击按钮，让data中的count的值+1
+    Vue.component('counter',{
+        template:'#temp1',
+        data:function () {
+            // return dataObj;
+            return {count:0};
+        },
+        methods:{
+            increment(){
+                this.count++;
+            }
+        }
+
+
+    })
+
+    //创建vue实例，得到ViewModel
+    var vm = new Vue({
+        el:'#app',
+        data:{
+        },
+        methods:{
+
+        },
+
+    });
+
+</script>
+</html>
