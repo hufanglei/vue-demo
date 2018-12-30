@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../bootstrap-3.3.7/css/bootstrap.css"/>
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/vue-resource.js"></script>
+    <!--自定义两组样式，来控制transation 内部的元素 实现动画-->
+
+
+
+</head>
+<body>
+
+<div id="app">
+    {{datamsgFormSon}}
+    <!--父组件向子组件传递方法，使用的是 事件绑定机制-->
+    <!--<com2 v-on:func="show"></com2>-->
+    <!-- v-on,当我们自定义了一个事件属性之后，那么， 子组件就能够，通过某些方式，
+     来调用传递进去的这个方法了-->
+        <com2 @func123="show"></com2>
+</div>
+<template id="temp1">
+    <div>
+        <h1>这是子组件</h1>
+        <input type="button" value="这是子组件中的按钮-点击它，触发父组件传递过来的func方法" @click="myclick">
+    </div>
+</template>
+</body>
+<script type="text/javascript">
+    //定义了一个字面量类型的组件模板对象
+    var com2 = {
+        template:'#temp1',//通过指定了一个Id，表示说，要去加载这个指定id的template元素中的内容，当做组件中Hhtml结构
+        data(){
+            return{
+                sonmsg:{name:'小头儿子',age:6}
+            }
+        },
+        methods:{
+            myclick(){
+                //当点击子组件的按钮的时候，如何拿到传递过过来func方法，并调用这个方法
+                //emit 英文愿意: 是触发，调用，发射的意思
+                // this.$emit('func123','123','345');
+                this.$emit('func123',this.sonmsg);
+            }
+        }
+    };
+
+    //创建vue实例，得到ViewModel
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            msg:'123 啊-父组件中的数据',
+            datamsgFormSon : null
+        },
+        methods:{
+            // show(data,data1){
+            //     console.log('调用了父组件身上的show方法:----'+data,data1);
+            // }
+            show(data){
+                console.log('调用了父组件身上的show方法:----'+data);
+                console.log(data);
+                this.datamsgFormSon = data;
+            }
+        },
+        components:{
+            com2
+
+            //com2:com2
+        }
+
+    });
+
+</script>
+</html>
