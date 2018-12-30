@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../bootstrap-3.3.7/css/bootstrap.css"/>
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/vue-resource.js"></script>
+    <!--自定义两组样式，来控制transation 内部的元素 实现动画-->
+
+
+    <style>
+
+    </style>
+</head>
+<body>
+
+<div id="app">
+    <a href="" @click.prevent="flag=true">登录</a>
+    <a href="" @click.prevent="flag=false">注册</a>
+    <login v-if="flag"></login>
+    <register v-else="flag"></register>
+</div>
+
+</body>
+<script type="text/javascript">
+    Vue.component('login',{
+        template:'<h1>这是个登录组件</h1>'
+    });
+    Vue.component('register',{
+        template:'<h1>这是个注册组件</h1>'
+    });
+
+    //创建vue实例，得到ViewModel
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            flag:false
+        },
+        methods:{
+
+        },
+
+    });
+
+</script>
+</html>
