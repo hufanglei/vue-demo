@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/vue-router.js"></script>
+    <!--<script src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>-->
+    <!--<style/style>-->
+</head>
+<body>
+<div id="app">
+    <a href="#/login">登录</a>
+    <a href="#/register">注册</a>
+    <router-view></router-view>
+</div>
+
+<script>
+    //组件的模板对象
+    var login = {
+        template:'<h1>登录组件</h1>'
+    }
+    var register = {
+        template:'<h1>注册组件</h1>'
+    }
+    // var login = Vue.component('login',{
+    //     template:'<h1>登录组件</h1>'
+    // });
+
+    var routerObj = new VueRouter({
+        //每个路由规则，都是一个对象，这个规则对象，身上，有两个必须的属性
+        //属性1:是path，表示监听 那个路由连接地址
+        //属性2： 是component 表示 如果 路由是前面匹配的path ，则表示component属性对应的那个组件
+        routes : [//路由匹配规则
+            {path:'/login', component:login},
+            {path:'/register', component:register}
+        ]
+    })
+
+    var vm = new  Vue({
+        el:'#app',
+        data:{
+
+        },
+        methods:{
+
+        },
+        router:routerObj //将路由规则对象，注册到vm实例上，用来监听url地址变化，然后展示对应的组件
+    })
+</script>
+</body>
+</html>
