@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../bootstrap-3.3.7/css/bootstrap.css"/>
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/vue-resource.js"></script>
+    <link rel="stylesheet" href="../bootstrap-3.3.7/css/bootstrap.css">
+
+</head>
+<body>
+
+<div id="app">
+    <input type="button" ref="mybtn" value="获取元素" @click="getElement">
+    <h3 id="myh3" ref="myh3">哈哈哈，今天天气太好了！！！</h3>
+    <hr>
+    <login ref="mylogin"> </login>
+
+</div>
+
+</body>
+<script type="text/javascript">
+    var login = {
+        template:'<h1>登录组件</h1>',
+        data(){
+            return {
+                msg:'son msg'
+            }
+        },
+        methods:{
+            show(){
+                console.log('调用了子组件的方法');
+            }
+        }
+    };
+
+    //创建vue实例，得到ViewModel
+    var vm = new Vue({
+        el:'#app',
+        data:{
+
+        },
+        methods:{
+            getElement(){
+               // console.log(document.getElementById('myh3').innerText);
+                // ref 是英文单词【reference 值类型和引用类型】
+                console.log(vm);
+                console.log(this.$refs.mylogin.msg);
+                this.$refs.mylogin.show();
+            }
+        },
+        components:{
+            login
+        }
+
+
+    });
+
+</script>
+</html>
