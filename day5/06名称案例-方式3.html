@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/vue-router.js"></script>
+
+    <style>
+
+    </style>
+</head>
+
+<body>
+<div id="app">
+  <!--  分析
+    我们要监听到文本框数据的改变，这样才能知道什么时候去拼接，
+    如果监听文本框的数据改变呢-->
+    <input type="text" v-model="firstname" >+
+    <input type="text" v-model="middelname" >
+    <input type="text" v-model="lastname" >=
+    <input type="text" v-model="fullname">
+
+    <p>{{fullname}}</p>
+    <p>{{fullname}}</p>
+    <p>{{fullname}}</p>
+</div>
+
+
+<script>
+
+
+    var vm = new  Vue({
+        el:'#app',
+        data:{
+            firstname:'',
+            lastname:'',
+            middelname:''
+        },
+        methods:{
+        },
+        computed:{//在computed中，可以定义一些属性，这些属性，叫做【计算属性】，
+            //计算属性的本质就是一个方法，只不过我们 在使用这些计算属性的时候，是吧他们的
+            //名称，直接当做 属性来使用的，并不会吧 计算属性，当作方法去调用
+
+            //注意：计算属性，在引用的时候，一定不要加（）去调用，直接把他当作普通属性去使用就好了
+            //注意: 只要计算属性，这个function内部，所用的 任何 data中数据发送了变化，
+            //就会立即从新计算这个计算属性的值
+            //注意3: 计算属性的求值结果，会被缓存起来，方便下次直接使用，如果 计算属性方法中，
+            //所有的任何数据，都没有发生过变化，则 不会从新对 计算属性求值
+            'fullname':function () {
+                console.log(1);
+                return this.firstname + '-' + this.middelname +  '-' + this.lastname;
+            }
+
+        },
+    })
+</script>
+</body>
+</html>
