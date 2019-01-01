@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../js/vue.min.js"></script>
+    <script src="../js/vue-router.js"></script>
+
+    <style>
+
+    </style>
+</head>
+
+<body>
+<div id="app">
+  <!--  分析
+    我们要监听到文本框数据的改变，这样才能知道什么时候去拼接，
+    如果监听文本框的数据改变呢-->
+    <input type="text" v-model="firstname" @keyup="getFullName">+
+    <input type="text" v-model="lastname" @keyup="getFullName">=
+    <input type="text" v-model="fullname">
+
+
+</div>
+
+
+<script>
+
+
+    var vm = new  Vue({
+        el:'#app',
+        data:{
+            firstname:'',
+            lastname:'',
+            fullname:''
+        },
+        methods:{
+            getFullName(){
+                this.fullname = this.firstname + "-" + this.lastname
+            }
+        },
+    })
+</script>
+</body>
+</html>
